@@ -14,7 +14,7 @@ import os.path
 from shutil import copyfile
 
 if len(sys.argv) ==1:
-  print("too few arguements")
+  print("TOO FEW ARGUMENTS... PLEASE ADD SRR_ACC_LIST.TXT FILE")
   sys.exit(-1)
 elif len(sys.argv) >2:
   print("TOO MANY ARGUMENTS... IGNORING EXTRA ARGUMENTS...")
