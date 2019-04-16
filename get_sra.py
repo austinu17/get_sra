@@ -49,20 +49,25 @@ for sra in sras:
 	print(exit_status)
 	print(exit_status.returncode)
 	if exit_status.returncode == 0:
-		copyfile(sra+"_tmp.sra", sra+".sra")
+		os.rename(sra+"_tmp.sra", sra+".sra")
 	else:
 		print("Did Not Copy")
 	if os.path.isfile(sra+".sra") and os.path.isfile(sra+"_tmp.sra") == True:
-	    os.remove(sra+"_tmp.sra")
+	    os.remove(sra+".sra")
      
 for sra in sras:
-    if os.path.isfile(sra+".fastq") == False:
+    if os.path.isfile(sra+".fastq") == False and os.path.isfile(sra+".sra") == True:
         print("CONVERTING "+ sra+".sra"+ " TO FASTQ FILE...")
         subprocess.run(['fastq-dump',sra + ".sra"])
-    else:
+        os.remove(sra+".sra")
+    elif os.path.isfile(sra+".fastq") == True and os.path.isfile(sra+".fastq") == True:
+        print("RESTARTING " + sra + " .FASTQ DOWNLOAD")
+        os.remove(sra+".fastq")
+        subprocess.run(['fastq-dump',sra + ".sra"])
+        os.remove(sra+".sra")
+    elif os.path.isfile(sra+".fastq") == True and os.path.isfile(sra+".fastq") == False:
         print(sra + " .FASTQ ALREADY DOWNLOADED")
         continue
-    
     #if os.path.isfile(sra+".fastq") == True and os.path.isfile(sra+".sra") == True :
          #os.remove(sra+".sra")
     #elif os.path.isfile(sra+".fastq") == True and os.path.isfile(sra+".sra") == False :
@@ -90,4 +95,3 @@ for sra in sras:
 #4) Install pandas
 # conda install pandas
 #5) list environments on system
-#ls ~/.conda/envs
