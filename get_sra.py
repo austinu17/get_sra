@@ -1,7 +1,7 @@
 #!/usr/bin/env python 
 
 # add shebang at top of file
-# shebang tell the shell how to interpret the file
+# shebang tells the shell how to interpret the file
 
 # Set permission to run file
 #    ls -la 
@@ -35,6 +35,10 @@ df = pd.read_csv(sys.argv[1],header=None)
 sras = df[0].tolist()
 
 for sra in sras:
+#skipping sra download for already downloaded .fastq file
+    if os.path.isfile(sra +".fastq") == True and os.path.isfile(sra +".sra")== False:
+        continue
+#skipping if SRA file is already downloaded
     if os.path.isfile(sra+".sra") == True and os.path.isfile(sra+"_tmp.sra") == False:
         print(sra+".sra" " FILE ALREADY DOWNLOADED")
         continue
@@ -49,8 +53,6 @@ for sra in sras:
         os.rename(sra+"_tmp.sra", sra+".sra")
     else:
         print("Did Not Copy")
-    if os.path.isfile(sra+".sra") and os.path.isfile(sra+"_tmp.sra") == True:
-        os.remove(sra+".sra")
      
 for sra in sras:
 #SRA File from previous part before, with no Fastq file
@@ -91,4 +93,3 @@ for sra in sras:
 #4) Install pandas
 # conda install pandas
 #5) list environments on system
-
