@@ -58,14 +58,22 @@ for sra in sras:
 #SRA File from previous part before, with no Fastq file
     if os.path.isfile(sra+".fastq") == False and os.path.isfile(sra+".sra") == True:
         print("CONVERTING "+ sra+".sra"+ " TO FASTQ FILE...")
-        subprocess.run(['fastq-dump',sra + ".sra"])
-        os.remove(sra+".sra")
+        output = subprocess.call(['fastq-dump',sra + ".sra"])
+        if output == 0:
+            os.remove(sra+".sra")
+            continue
+        else:
+            break
 #SRA and Fastq file from failure to commplete fastq download
     elif os.path.isfile(sra+".sra") == True and os.path.isfile(sra+".fastq") == True:
         print("RESTARTING " + sra + " .FASTQ DOWNLOAD")
         os.remove(sra+".fastq")
-        subprocess.run(['fastq-dump',sra + ".sra"])
-        os.remove(sra+".sra")
+        output = subprocess.call(['fastq-dump',sra + ".sra"])
+        if output == 0:
+            os.remove(sra+".sra")
+            continue
+        else:
+            break
 #Skipping the download if already downloaded
     elif os.path.isfile(sra+".fastq") == True and os.path.isfile(sra+".sra") == False:
         print(sra + " .FASTQ ALREADY DOWNLOADED")
