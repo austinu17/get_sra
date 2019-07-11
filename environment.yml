@@ -1,0 +1,37 @@
+name: getsra
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - default
+dependencies:
+  - blas=1.0
+  - bzip2=1.0.6
+  - ca-certificates=2018.11.29
+  - certifi=2018.11.29
+  - intel-openmp=2019.1
+  - libffi=3.2.1
+  - mkl=2019.1
+  - mkl_fft=1.0.10
+  - mkl_random=1.0.2
+  - ncurses=6.1
+  - numpy=1.15.4
+  - numpy-base=1.15.4
+  - openssl=1.1.1a
+  - pandas=0.24.1
+  - pip=19.0.3
+  - python=3.7.1
+  - python-dateutil=2.8.0
+  - pytz=2018.9
+  - readline=7.0
+  - setuptools=40.8.0
+  - six=1.12.0
+  - sqlite=3.26.0
+  - tk=8.6.9
+  - wheel=0.33.1
+  - xz=5.2.4
+  - zlib=1.2.11
+  - sra-tools=2.9.1
+  - wget=1.19.5 
+prefix: /users/PAS1307/austinu17/.conda/envs/getsra
+
