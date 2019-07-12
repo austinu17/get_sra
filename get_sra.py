@@ -23,9 +23,7 @@ if os.path.isfile(sys.argv[1]) == False:
   print("SRR FILE NOT FOUND... EXITING...")                   
   sys.exit(-2)
 
-print("program running")
-
-print("program running")
+print("PROGRAM RUNNING...")
 
 print(sys.argv)
 
@@ -52,7 +50,7 @@ for sra in sras:
     if exit_status.returncode == 0:
         os.rename(sra+"_tmp.sra", sra+".sra")
     else:
-        print("Did Not Copy")
+        print("DID NOT COPY")
      
 for sra in sras:
 #SRA File from previous part before, with no Fastq file
